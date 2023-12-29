@@ -81,6 +81,18 @@ public class UserController {
 		}
 		ResponseEntity<User> resp=new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		return resp;
+	}
+	@GetMapping("/users/{email}/{password}")
+	public ResponseEntity<User> verifyUser(@PathVariable String email,@PathVariable String password)
+	{
+		User u=service.verifyUser(email, password);
+		if(u!=null)
+		{
+			ResponseEntity<User> resp=new ResponseEntity<User>(u,HttpStatus.FOUND);
+			return resp;
+		}
+		ResponseEntity<User> resp=new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return resp;
 		
 		
 	}

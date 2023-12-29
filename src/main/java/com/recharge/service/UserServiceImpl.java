@@ -78,6 +78,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+
+	@Override
+	public User verifyUser(String email, String password) {
+		User u=repository.findByEmailAndPassword(email,password);
+		return u;
+	}
 	
 	
 }
